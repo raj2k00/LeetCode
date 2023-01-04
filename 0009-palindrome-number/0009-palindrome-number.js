@@ -8,11 +8,10 @@ var isPalindrome = function(x) {
     let remainder = 0;
     
     if(x < 0) return false;
-    
-    for(; input_number != 0 ; ){
-        remainder = parseInt(input_number % 10);
+
+    for(let i = input_number  ; i > 0 ; i= parseInt(i / 10)){
+        remainder = parseInt(i % 10);
         reversed_number = reversed_number * 10 + remainder
-        input_number= parseInt(input_number / 10) 
     }
     if(x == reversed_number) return true;
     return false;
