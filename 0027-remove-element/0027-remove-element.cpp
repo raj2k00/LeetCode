@@ -1,16 +1,7 @@
-/**
- * @param {number[]} nums
- * @param {number} val
- * @return {number}
- */
-var removeElement = function(nums, val) {
-    let i = 0;
-    while(i < nums.length){
-        if(nums[i] === val){
-            nums.splice(i,1)
-        }else{
-            ++i
-        }
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        auto filterd_array = remove(nums.begin(), nums.end(),val);
+        return distance(nums.begin(), filterd_array);
     }
-    return nums.length
 };
