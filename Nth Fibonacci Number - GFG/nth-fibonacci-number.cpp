@@ -17,7 +17,7 @@ class Solution {
         
         long long int temp = 0;
         
-        for(int i = 1; i < n; i++){
+        for(int i = 2; i <= n; i++){
             temp = (firstNumber + secondNumber) % 1000000007;
             firstNumber = secondNumber;
             secondNumber = temp;
