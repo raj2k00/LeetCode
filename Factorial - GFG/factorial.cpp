@@ -9,11 +9,12 @@ public:
        if(N ==1 || N == 0){
            return 1;
        }
-       long long int x = 1;
-       for( ; N != 0 ; --N ){
-           x *= N ;
-       }
-       return x;
+    //   long long int x = 1;
+    //   for( ; N != 0 ; --N ){
+    //       x *= N ;
+    //   }
+    //   return x;
+    return N * factorial(N - 1);
     }
 };
 
