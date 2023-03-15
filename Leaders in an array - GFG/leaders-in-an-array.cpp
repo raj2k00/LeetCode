@@ -13,9 +13,9 @@ class Solution{
     public:
     vector<int> leaders(int a[], int n){
         vector<int>solution;
-        reverse(a, a+n);
-        solution.push_back(a[0]);
-        for(int i = 1; i <  n ; ++i ){
+
+        solution.push_back(a[n-1]);
+        for(int i = n-2 ; i >=  0 ; --i ){
             int s = solution.size();
             if(a[i] >= solution[s-1] ){
                 solution.push_back(a[i]);
