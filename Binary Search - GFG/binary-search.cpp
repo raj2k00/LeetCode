@@ -17,7 +17,7 @@ class Solution {
         int mid;
         
         while(high > low){
-            mid = (high + low) / 2;
+            mid = low + (high - low) / 2;
             if(arr[mid] == k){
                 return mid;
             }else if (arr[mid] < k){
@@ -32,7 +32,7 @@ class Solution {
         }else if(arr[high] == k){
             return high;
         }else{
-        return -1;
+            return -1;
         }
     }
 };
