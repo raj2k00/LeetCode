@@ -7,35 +7,23 @@ class Solution{
     public:
     int search(int A[], int l, int h, int key){
     
-        if(l > h) return -1;
+    int lo = 0, hi = h+1;
+    while (lo < hi) {
+        int mid = (lo + hi) / 2;
         
-        int mid = (l + h) / 2;
-        
-        if(A[mid] == key) return mid;
-        
-        
-        // if low to mid is sorted 
-        if(A[l] <= A[mid]){
-            
-            if(key >= A[l] && key <= A[mid]){
-                return search(A, l, mid - 1, key);
-            }
-            
-            // if Key is not lies in the first half, then search in second half
-            return search(A, mid + 1, h, key );
-            
-        }
-        
-        // if low to mid is not sorted then mid to high is sorted
-        
-        if(key >= A[mid] && key <= A[h]){
-            
-            // searching in mid to high
-            return search(A, mid + 1, h , key );
-        }
-        
-        // else search in low to mid -1
-        return search(A, l , mid - 1  , key);
+        double num = (A[mid] < A[0]) == (key < A[0])
+                   ? A[mid]
+                   : key < A[0] ? -INFINITY : INFINITY;
+                   
+        if (num < key)
+            lo = mid + 1;
+        else if (num > key)
+            hi = mid;
+        else
+            return mid;
+    }
+    return -1;
+
     
     }
 };
