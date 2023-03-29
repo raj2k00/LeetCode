@@ -26,10 +26,15 @@ class Solution{
             
         }
         
+        // if low to mid is not sorted then mid to high is sorted
+        
         if(key >= A[mid] && key <= A[h]){
+            
+            // searching in mid to high
             return search(A, mid + 1, h , key );
         }
         
+        // else search in low to mid -1
         return search(A, l , mid - 1  , key);
     
     }
