@@ -33,7 +33,7 @@ class Solution
                     isSwapped = true;
                 }
             }
-            if(!isSwapped) break;
+            // if(!isSwapped) break;
         }
     }
 };
