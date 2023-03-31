@@ -21,7 +21,6 @@ void swap(int *xp, int *yp)
 class Solution
 {
     public:
-    //Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n)
     {
         bool isSwapped;
@@ -33,7 +32,7 @@ class Solution
                     isSwapped = true;
                 }
             }
-            // if(!isSwapped) break;
+            if(!isSwapped) break;
         }
     }
 };
