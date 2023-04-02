@@ -49,7 +49,7 @@ class Solution
             }
             k++;
         }
-            
+        
         while (i < s1)
             arr[k++] = L[i++];
         
