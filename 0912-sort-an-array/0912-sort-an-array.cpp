@@ -4,9 +4,9 @@ class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
         
-        // ios_base::sync_with_stdio(0);
-        // cin.tie(0);
-        // cout.tie(0);
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
     
         for(auto x : nums){
             if(x >= 0){
