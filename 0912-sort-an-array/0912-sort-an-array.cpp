@@ -1,8 +1,9 @@
-int A[50001] = {0};
-int B[50001] = {0};
+
 class Solution {
 public:
     vector<int> sortArray(vector<int>& nums) {
+        int A[50001] = {0};
+        int B[50001] = {0};
         
         ios_base::sync_with_stdio(0);
         cin.tie(0);
