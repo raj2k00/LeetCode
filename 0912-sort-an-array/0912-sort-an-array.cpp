@@ -1,59 +1,43 @@
+int A[50001] = {0};
+int B[50001] = {0};
 class Solution {
 public:
-    
-    void merge(vector<int>& nums, int l, int m, int r){
-        int s1 = m - l + 1;
-        int s2 = r - m;
-        
-        vector <int> L(s1);
-        vector <int> R(s2);
-        
-        for(int i = 0; i < s1; i++){
-            L[i] = nums[l + i];
-        }
-        
-        for(int j = 0; j < s2; j++){
-            R[j] = nums[m + 1 + j];
-        }
-        
-        int i = 0;
-        int j = 0;
-        int k = l;
-        
-        while(i < s1 && j < s2){
-            if(L[i] < R[j]){
-                nums[k] = L[i];
-                i++;
-            }else{
-                nums[k] = R[j];
-                j++;
-            }
-            k++;
-        }
-        
-        
-        while(i < s1){
-            nums[k++] = L[i++];
-        }
-        
-        while(j < s2){
-            nums[k++] = R[j++];
-        }
-        
-    }
-    
-    void mergeSort(vector<int>&nums, int l, int r){
-        if(l < r){
-            int m = l + (r - l) / 2;
-            mergeSort(nums, l, m);
-            mergeSort(nums,m+1, r);
-            merge(nums, l, m, r);
-        }
-    }
-    
     vector<int> sortArray(vector<int>& nums) {
-        int r = nums.size() - 1;
-        mergeSort(nums, 0, r);
+        
+        // ios_base::sync_with_stdio(0);
+        // cin.tie(0);
+        // cout.tie(0);
+    
+        for(auto x : nums){
+            if(x >= 0){
+                A[x]++; 
+            }else{
+                B[-x]++;   // absolute value (-(-3)) => 3 
+            }
+        }
+        
+        nums.clear(); // clearing input array
+        
+        for(int i = 50000; i >= 1; i--){  // B has negative values (say), 
+            if(B[i]){                     // -100 smaller than -5, so start from end vaue
+                while(B[i] != 0){         // change the value back to negative   
+                    nums.push_back(-i);          
+                    B[i]--;
+                }                               
+            } 
+        }
+        
+        for(int i = 0; i <= 50000 ; i++ ){
+            if(A[i]){
+                while(A[i] != 0){
+                    nums.push_back(i);
+                    A[i]--;
+                }
+            }
+        }
+        
         return nums;
+         
+        
     }
 };
