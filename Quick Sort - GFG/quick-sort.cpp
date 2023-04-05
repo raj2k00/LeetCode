@@ -21,7 +21,10 @@ class Solution
     {
         if(low < high){
             int pivot = partition(arr,low,high);
-            quickSort(arr,low,pivot-1);
+            // Lomuto Partition
+            // quickSort(arr,low,pivot-1);
+            // Hoare's Partition
+            quickSort(arr,low,pivot);
             quickSort(arr,pivot+1,high);
         }
     }
@@ -29,18 +32,43 @@ class Solution
     public:
     int partition (int arr[], int low, int high)
     {
-       int i = low - 1;
-       int p = arr[high];
+    //   Lomuto Partition
+    //   int i = low - 1;
+    //   int p = arr[high];
        
-       for(int j = low; j <= high; j++){
-           if(arr[j] < p){
-               i++;
-               swap(arr[i], arr[j]);
-           }
-       }
-       swap(arr[i+1], arr[high]);
+    //   for(int j = low; j <= high; j++){
+    //       if(arr[j] < p){
+    //           i++;
+    //           swap(arr[i], arr[j]);
+    //       }
+    //   }
+    //   swap(arr[i+1], arr[high]);
        
-       return i+1;
+    //   return i+1;
+    
+    // Hoare's Partition
+    
+        int i = low - 1;
+        int j = high + 1;
+        int p = arr[low];
+        
+        while (true){
+            
+
+        do{
+            i++;
+        }while(arr[i] < p);
+        
+        do{
+            j--;
+        }while(arr[j] > p);
+        
+        if(i >= j){
+            return j;
+        }
+        
+        swap(arr[i], arr[j]);
+        }
     }
 };
 
