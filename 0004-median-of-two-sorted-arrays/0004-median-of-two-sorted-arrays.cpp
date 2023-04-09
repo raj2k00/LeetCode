@@ -12,13 +12,11 @@ public:
         
         
         for(int count = 0; count <= (s1 + s2) / 2 ; count++){
-            
+
             m2 = m1;
             
             if( i != s1 && j != s2){
-             
-                m1 = nums1[i] > nums2[j] ? nums2[j++] : nums1[i++];
-            
+                m1 = nums1[i] > nums2[j] ? nums2[j++] : nums1[i++];            
             } 
             
             else if (i < s1){
@@ -30,11 +28,12 @@ public:
             }
             
         }
-        
+
         if((s1 + s2) % 2 == 1){
             return m1;
-        }else{
-            return (m1 + m2) / 2;
         }
+        
+        return (m1 + m2) / 2;
+        
     }
 };
