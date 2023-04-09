@@ -30,8 +30,7 @@ public:
 
         if((s1 + s2) % 2 == 1){
             return m1;
-        }
-        
+        }    
         return (m1 + m2) / 2;
         
     }
