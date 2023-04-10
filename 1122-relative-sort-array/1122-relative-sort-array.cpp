@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
-        // sort(arr1.begin(), arr1.end());
         
         int hash[1001] = {0};
         
