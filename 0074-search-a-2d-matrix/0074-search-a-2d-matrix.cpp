@@ -21,12 +21,10 @@ public:
             }
             else if (target > matrix[i][j] && target <= matrix[i][column - 1]){
                 j++;
-            }else if (target > matrix[i][j] && target > matrix[i][column - 1]){
-                j = 0;  // reset the column start point
+            }
+            else{
                 i++;
-            }else{
-                i++;
-                j++;
+                j = 0;
             }
             
         }
