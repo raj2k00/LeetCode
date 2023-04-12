@@ -2,6 +2,8 @@ class Solution {
 public:
     void rotate(vector<vector<int>>& matrix) {
         
+        // if we need to rotate anti-clockwise just do transpose before interchange
+        
         int n = matrix.size();
         
         // Interchanging columns
@@ -17,8 +19,6 @@ public:
                 swap(matrix[i][j], matrix[j][i]);
             }
         }
-        
-
         
     }
 };
