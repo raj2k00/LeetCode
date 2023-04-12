@@ -29,13 +29,10 @@ public:
             else {
                 j = 0;
                 i++;
-            }
-            
+            }       
             
         }
         
-        
-            
         return false;
     }
 };
