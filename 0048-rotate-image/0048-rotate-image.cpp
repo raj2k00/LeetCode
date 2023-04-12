@@ -39,7 +39,8 @@ public:
                 swap(matrix[i][j], matrix[j][i]);
             }
         }
-                 // Interchanging columns
+        
+        // Interchanging columns
         for(int i = 0; i < n; i++){
             for(int j = 0, k = n - 1; j < k;  j++,k-- ){
                 swap(matrix[j][i], matrix[k][i]);
