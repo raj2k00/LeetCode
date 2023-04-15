@@ -14,7 +14,7 @@ public:
             charCount[t[i]]--;
         }
         
-        for(int i = 0; i < 156; i++){
+        for(int i = 0; i < 256; i++){
             if(charCount[i] != 0) return false;
         }
         
