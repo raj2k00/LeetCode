@@ -1,15 +1,6 @@
 class Solution {
         
-public:
-    
-    bool compareArray(vector <int> a, vector <int> b ){
-        for(int i = 0; i < 26 ; i++){
-            if(a[i] != b[i]) return false;
-        }
-        return true;
-    };
-        
-    
+public:    
     
     bool checkInclusion(string s1, string s2) {
         
@@ -31,7 +22,7 @@ public:
             pattern[s2[j] - 'a']++; 
             
             if( j - i + 1 == s1.size()){
-                if(compareArray(text, pattern)) return true;
+                if(text == pattern) return true;
             }
             
             if( j - i + 1 < s1.size()){
