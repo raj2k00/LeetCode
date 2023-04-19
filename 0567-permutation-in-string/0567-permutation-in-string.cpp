@@ -13,7 +13,7 @@ public:
     
     bool checkInclusion(string s1, string s2) {
         
-        if(s1.length() > s2.length()) return false;
+        if(s1.size() > s2.size()) return false;
         
         vector <int> pattern (26,0);
         vector <int> text (26,0);
@@ -26,15 +26,15 @@ public:
         int i = 0;
         int j = 0;
         
-        while(j < s2.length()){
+        while(j < s2.size()){
             
             pattern[s2[j] - 'a']++; 
             
-            if( j - i + 1 == s1.length()){
+            if( j - i + 1 == s1.size()){
                 if(compareArray(text, pattern)) return true;
             }
             
-            if( j - i + 1 < s1.length()){
+            if( j - i + 1 < s1.size()){
                 j++;
             }
             
