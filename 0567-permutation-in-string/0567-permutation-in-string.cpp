@@ -1,7 +1,5 @@
 class Solution {
-        
-public:    
-    
+public:      
     bool checkInclusion(string s1, string s2) {
         
         if(s1.size() > s2.size()) return false;
@@ -13,9 +11,7 @@ public:
             text[x - 'a']++;
         }
         
-        
-        int i = 0;
-        int j = 0;
+        int i = 0, j = 0;
         
         while(j < s2.size()){
             
@@ -35,8 +31,7 @@ public:
                 j++;
                 
             }
-            
-            
+              
         }
         
         return false;
