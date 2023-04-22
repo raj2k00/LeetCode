@@ -6,7 +6,7 @@ public:
         
         int k = s.size();
         
-        if(k == 1) return false;
+     
         
         vector <int> arr (k,0);
         
