@@ -8,20 +8,16 @@ class Solution{
     vector<int> duplicates(int arr[], int n) {
         
         vector <int> ans;
-        unordered_set <int> res;
-        
         unordered_map <int, int> m;
         
         for(int i = 0; i < n; i++){
-            if(m.find(arr[i]) != m.end()){
-                res.insert(arr[i]);
-            }else{
-                m[arr[i]]++;
-            }
+            m[arr[i]]++;
         }
         
-        for(auto i : res){
-            ans.push_back(i);
+        for(auto i : m){
+            if( i.second > 1){
+                ans.push_back(i.first);
+            }
         }
         
         sort(ans.begin(),ans.end());
