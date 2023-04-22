@@ -12,7 +12,6 @@ public:
         
         for(int i = 1; i < k; i++){
             
-            
             while( j > 0 && s[i] != s[j]){
                 j = arr[j - 1];
             }
@@ -23,9 +22,6 @@ public:
             
             arr[i] = j;
         }
-        
-        cout << k << " " <<arr[k - 1] << endl;
-        
         
        return arr[k - 1] && k % (k - arr[k - 1]) == 0 ? true : false;
     
