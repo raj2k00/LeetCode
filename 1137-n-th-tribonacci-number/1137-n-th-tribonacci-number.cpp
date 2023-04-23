@@ -15,8 +15,7 @@ public:
             a = b;
             b = c;
             c = temp;
-            
-            
+              
         }
         
         return c;
