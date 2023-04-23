@@ -1,26 +1,25 @@
 class Solution {
 public:
-    int dp[38];
-    
-    int memoizeTribonacci(int n){
-        if(n == 0) return 0;
-        if(n <= 2) return 1;
-        
-        if(dp[n] != -1) return dp[n];
-        
-        return dp[n] = memoizeTribonacci(n - 1) + memoizeTribonacci(n - 2) + memoizeTribonacci(n - 3);
-    }
-    
     int tribonacci(int n) {
         
-        int first = 0, second = 1, third = 1;
+        if(n < 3){
+            return n > 0 ? 1 : 0; 
+        }
         
-        if(n == 0) return first;
-        if(n <= 2) return second;
+        int a = 0, b = 1, c = 1;
         
-        memset(dp, -1, sizeof(dp));
+        for(int i = 2; i < n; i++){
+            
+            int temp = a + b + c;
+            
+            a = b;
+            b = c;
+            c = temp;
+            
+            
+        }
         
-        return memoizeTribonacci(n);
-         
+        return c;
+        
     }
 };
