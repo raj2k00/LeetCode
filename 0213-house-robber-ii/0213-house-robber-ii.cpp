@@ -22,7 +22,6 @@ public:
             prev4 = temp;
         } 
         
-        
         return max(prev3, prev1);
         
     }
