@@ -1,28 +1,32 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
+    
+    int MaxRob(int l, int h, vector<int>arr){
         
-        if(nums.size() == 1) return nums[0];
+        int oneStepBack = 0;
+        int twoStepBack = 0;
         
-        int prev1 = 0;
-        int prev2 = 0;
+        int maxAmountRobbed = 0;
         
-        for(int i = 0; i < nums.size() - 1 ; i++  ){
-            int temp = prev1;
-            prev1 = max(prev2 + nums[i] , prev1);
-            prev2 = temp;
+        for(int i = l; i < h; i++){
+            
+            maxAmountRobbed = max( twoStepBack + arr[i] , oneStepBack);
+            twoStepBack = oneStepBack;
+            oneStepBack = maxAmountRobbed;
+            
         }
         
-        int prev3 = 0;
-        int prev4 = 0;
+        return maxAmountRobbed;
         
-        for(int i = 1; i < nums.size(); i++){
-            int temp = prev3;
-            prev3 = max(prev4 + nums[i], prev3 );
-            prev4 = temp;
-        } 
+    }
+    
+    
+    int rob(vector<int>& nums) {
         
-        return max(prev3, prev1);
+        if(nums.size() == 0) return 0;
+        if(nums.size() == 1) return nums[0];
+        
+        return max(MaxRob(0, nums.size() - 1, nums), MaxRob(1, nums.size(), nums));
         
     }
 };
