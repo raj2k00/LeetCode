@@ -30,14 +30,14 @@ class Solution
     //Function to count nodes of a linked list.
     int getCount(struct Node* head){
     
-        int count = 1;
+        int count = 0;
         
         while(head -> next != NULL){
             count++;
             head = head -> next;
         }
         
-        return count;
+        return count + 1; // 1 index
     
     }
 };
