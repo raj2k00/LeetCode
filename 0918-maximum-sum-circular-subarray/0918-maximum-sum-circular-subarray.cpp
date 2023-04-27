@@ -3,10 +3,10 @@ public:
     int maxSubarraySumCircular(vector<int>& nums) {
         
         int minCurrent = 0;
-        int minGlobal = nums[0];
+        int minSum = nums[0];
         
         int maxCurrent = 0;
-        int maxGlobal = nums[0];
+        int maxSum = nums[0];
         
         int sum = 0;
         
@@ -15,12 +15,12 @@ public:
             // maxSubArray
             
             maxCurrent = max(maxCurrent, 0) + num;
-            maxGlobal = max(maxCurrent, maxGlobal);
+            maxSum = max(maxCurrent, maxSum);
             
             // minSubArray
             
             minCurrent = min(minCurrent, 0) + num;
-            minGlobal = min(minCurrent, minGlobal);
+            minSum = min(minCurrent, minSum);
             
             // update Sum
             
@@ -28,7 +28,7 @@ public:
         
         }
         
-        return sum == minGlobal ? maxGlobal : max(maxGlobal, sum - minGlobal);
+        return sum == minSum ? maxSum : max(maxSum, sum - minSum);
         
     }
 };
