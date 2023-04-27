@@ -12,9 +12,7 @@ public:
             }
                         
             maxCurrent = maxCurrent + nums[i];
-                    
-
-            
+  
             maxGlobal = max(maxGlobal, maxCurrent);
 
         }
