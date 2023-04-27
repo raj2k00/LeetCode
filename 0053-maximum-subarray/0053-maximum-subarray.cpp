@@ -6,7 +6,7 @@ public:
         int maxGlobal = nums[0];
         
         for(int num : nums){
-            maxCurrent = max(maxCurrent, 0) + num;          
+            maxCurrent = max(maxCurrent + num , num);          
             maxGlobal = max(maxCurrent, maxGlobal);
         }
         
