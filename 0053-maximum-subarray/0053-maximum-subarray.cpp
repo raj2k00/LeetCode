@@ -2,18 +2,15 @@ class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
         
-        int globalMax = nums[0];
-        int maxSoFar = nums[0];
+        int maxCurrent = 0;
+        int maxGlobal = INT_MIN;
         
-        for(int i=1;i<nums.size();i++){
-            if (maxSoFar < 0){
-                maxSoFar = 0;
-            }
-            maxSoFar += nums[i];
-            globalMax = max(globalMax, maxSoFar);
+        for(int num : nums){
+            maxCurrent = max(maxCurrent, 0) + num;          
+            maxGlobal = max(maxCurrent, maxGlobal);
         }
         
-        return globalMax;
+        return maxGlobal;
         
     }
 };
