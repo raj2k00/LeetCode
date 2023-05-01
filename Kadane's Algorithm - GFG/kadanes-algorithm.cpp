@@ -15,8 +15,7 @@ class Solution{
         int maxSum = arr[0];
         
         for(int i = 0;  i < n; i++ ){
-            int temp = currentSum + arr[i];
-            currentSum = max(temp , arr[i]); 
+            currentSum = max(currentSum + arr[i] , arr[i]); 
             maxSum = max(maxSum, currentSum);
         }
         
