@@ -1,11 +1,11 @@
 class Solution {
 public:
     vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) {
-        
-        vector <vector <int>> ans;
-        
+                
         unordered_set <int> s1;
         unordered_set <int> s2;
+        vector <int> res1;
+        vector <int> res2;
         
         
         for(int n : nums1){
@@ -15,9 +15,6 @@ public:
         for(int n : nums2){
             s2.insert(n);
         }
-        
-        vector <int> res1;
-        vector <int> res2;
         
         for(auto x : s1){
             if(s2.find(x) == s2.end()){
@@ -31,10 +28,7 @@ public:
             }
         }
         
-        ans.push_back(res1);
-        ans.push_back(res2);
-        
-        return ans;
+        return {res1, res2};
             
     }
 };
