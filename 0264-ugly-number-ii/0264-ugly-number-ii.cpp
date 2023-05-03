@@ -13,13 +13,12 @@ public:
         
         for(int i = 1; i < n; ++i){
             
-            int currUgly = min(ugly[pt2] * 2, min(ugly[pt3] * 3, ugly[pt5] * 5));
+            ugly[i] = min(ugly[pt2] * 2, min(ugly[pt3] * 3, ugly[pt5] * 5));
             
-            if(currUgly == ugly[pt2] * 2) pt2++;
-            if(currUgly == ugly[pt3] * 3) pt3++;
-            if(currUgly == ugly[pt5] * 5) pt5++;
-            
-            ugly[i] = currUgly;
+            if(ugly[i] == ugly[pt2] * 2) pt2++;
+            if(ugly[i] == ugly[pt3] * 3) pt3++;
+            if(ugly[i] == ugly[pt5] * 5) pt5++;
+ 
             
         }
         
