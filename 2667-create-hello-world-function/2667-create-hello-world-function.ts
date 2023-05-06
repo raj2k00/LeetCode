@@ -1,10 +1,5 @@
-/**
- * @return {Function}
- */
-var createHelloWorld = function() {
-    return function(...args) {
-      return "Hello World"
-    }
+function createHelloWorld() {
+	return (...args : any[]):string => "Hello World"
 };
 
 /**
