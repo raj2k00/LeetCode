@@ -53,14 +53,9 @@ class Solution{
         }
         
         int s = data.size();
+    
+        return data[s / 2];
         
-        int middle = s / 2;
-        
-        if(s % 2 == 0){
-            return data[middle];
-        }else{
-            return data[middle];
-        }
     }
 };
 
