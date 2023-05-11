@@ -49,7 +49,7 @@ class Solution
         
         while(curr -> next != NULL){
             s.insert(curr -> data);
-            if(curr -> data == curr -> next -> data || s.find(curr -> next -> data) != s.end()){
+            if(s.find(curr -> next -> data) != s.end()){
                 temp = curr -> next;
                 curr -> next = curr -> next -> next;
                 delete(temp);
