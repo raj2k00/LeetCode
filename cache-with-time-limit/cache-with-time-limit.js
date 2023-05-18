@@ -1,41 +1,46 @@
-var TimeLimitedCache = function() {
-    this.cache = new Map()
-};
+class TimeLimitedCache {
+    keys = {}
+    /** 
+        * @param {number} key
+        * @param {number} value
+        * @param {number} time until expiration in ms
+        * @return {boolean} if un-expired key already existed
+    */
+    set(key, value, duration) {
+        const oldValue = this.keys[key];
 
-/** 
- * @param {number} key
- * @param {number} value
- * @param {number} time until expiration in ms
- * @return {boolean} if un-expired key already existed
- */
-TimeLimitedCache.prototype.set = function(key, value, duration) {
-    const valueInCache = this.cache.get(key);
+        if (oldValue) {
+            clearTimeout(oldValue.timeout)
+        }
 
-    if(valueInCache){
-        clearTimeout(valueInCache.timeout)
+        this.keys[key] = {
+            value, 
+            timeout: setTimeout(() => {
+                delete this.keys[key]
+            }, duration),
+        }
+
+        return !!oldValue;
     }
 
-    const timeout = setTimeout(() => this.cache.delete(key), duration);
+    /** 
+        * @param {number} key
+        * @return {number} value associated with key
+    */
+    get(key) {
+        if (this.keys.hasOwnProperty(key)) {
+            return this.keys[key].value
+        } else {
+            return -1
+        }
+    }
 
-    this.cache.set(key, {value, timeout});
-
-    return Boolean(valueInCache);
-
-};
-
-/** 
- * @param {number} key
- * @return {number} value associated with key
- */
-TimeLimitedCache.prototype.get = function(key) {
-    return this.cache.get(key) ? this.cache.get(key).value : -1;
-};
-
-/** 
- * @return {number} count of non-expired keys
- */
-TimeLimitedCache.prototype.count = function() {
-    return this.cache.size;
+    /** 
+        * @return {number} count of non-expired keys
+    */
+    count() {
+        return Object.values(this.keys).length
+    }
 };
 
 /**
