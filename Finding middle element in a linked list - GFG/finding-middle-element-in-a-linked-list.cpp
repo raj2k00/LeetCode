@@ -41,20 +41,31 @@ class Solution{
     /* Should return data of middle node. If linked list is empty, then  -1*/
     int getMiddle(Node *head)
     {
-        if(!head){
-            return -1;
+        
+        Node* slow = head;
+        Node* fast = head;
+        
+        while(fast != NULL && fast -> next != NULL){
+            slow = slow -> next;
+            fast = fast -> next -> next;
         }
         
-        vector <int> data;
+        return slow -> data;
         
-        while(head){
-            data.push_back(head -> data);
-            head = head -> next;
-        }
+        // if(!head){
+        //     return -1;
+        // }
         
-        int s = data.size();
+        // vector <int> data;
+        
+        // while(head){
+        //     data.push_back(head -> data);
+        //     head = head -> next;
+        // }
+        
+        // int s = data.size();
     
-        return data[s / 2];
+        // return data[s / 2];
         
     }
 };
