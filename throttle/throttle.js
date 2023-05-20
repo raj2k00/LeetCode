@@ -4,26 +4,26 @@
  * @return {Function}
  */
 var throttle = function(fn, t) {
-  
-    let intervalInProgress = null;
-    let argsToProcess = null;
 
-    const intervalFunction = () => {
-        if(argsToProcess == null){
-            clearInterval(intervalInProgress);
-            intervalInProgress = null;
-        }else{
-            fn(...argsToProcess);
+    let argsToProcess = null;
+    let intervalInProgress = null;
+
+    function intervalFunction(){
+        if(argsToProcess){
+            fn(...argsToProcess)
             argsToProcess = null;
+        }else{
+            clearInterval(intervalInProgress)
+            intervalInProgress = null
         }
     }
 
-    return function throttled(...args){
+    return function(...args) {
         if(intervalInProgress){
             argsToProcess = args;
         }else{
             fn(...args);
-            intervalInProgress = setInterval(intervalFunction, t);
+            intervalInProgress = setInterval(intervalFunction, t)
         }
     }
 };
