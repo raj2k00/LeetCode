@@ -82,17 +82,15 @@ struct node
 //  assume that there are at least index+1 nodes in linked list
 int GetNth(struct node* head, int index){
     
-    node * temp = head;
-    
-    while(temp != NULL){
+    while(head != NULL){
    
         if(index == 1){
-            return temp -> data;
+            return head -> data;
         }
    
         index--;
    
-        temp = temp -> next;
+        head = head -> next;
         
     }
     
