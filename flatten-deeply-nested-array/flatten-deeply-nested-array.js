@@ -5,17 +5,19 @@
  */
 var flat = function (arr, n) {
 
-    if(n == 0) return arr;
+    let res = [];
 
-    const ans = [];
-
-    for(const element of arr){
-        if(Array.isArray(element)){
-            ans.push(...flat(element, n - 1))
-        }else{
-            ans.push(element)
+    const flattening = (array, d ) => {
+        for(const element of array){
+            if(Array.isArray(element) && d > 0 && d <= n){
+                flattening(element, d - 1)
+            }else{
+                res.push(element);
+            }
         }
-    }
+    } 
 
-    return ans;
+    flattening(arr, n);
+
+    return res;
 };
