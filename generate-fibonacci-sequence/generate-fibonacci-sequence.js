@@ -8,7 +8,8 @@ var fibGenerator = function*() {
 
     while(true){
         yield a;
-        [a , b] = [b , a + b];
+        b = a + b;
+        a = b - a;
     }
 };
 
