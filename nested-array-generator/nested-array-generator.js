@@ -3,23 +3,14 @@
  * @return {Generator}
  */
 var inorderTraversal = function*(arr) {
-   
-    const flatArray = [];
 
-    function pushArray (array){
-        for(const el of array){
-            if(Array.isArray(el)){
-                pushArray(el);
-            }else{
-                flatArray.push(el)
-            }
+    for(const el of arr){
+        if(Array.isArray(el)){
+            yield* inorderTraversal(el)
         }
-    }
-
-    pushArray(arr);
-
-    for(let i = 0 ; i < flatArray.length; i++){
-        yield flatArray[i];
+        else{
+            yield el;
+        }
     }
 
 };
