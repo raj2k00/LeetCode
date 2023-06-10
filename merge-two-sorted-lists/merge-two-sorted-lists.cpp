@@ -11,57 +11,19 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-
-        if(list1 == nullptr && list2 == nullptr) return nullptr;
-
-        ListNode * head = new ListNode();
-        ListNode * current = head;
-
-        while(list1 != NULL && list2 != NULL){
-
-            if(list1 -> val < list2 -> val){
-                ListNode * newNode = new ListNode(list1 -> val);
-                current -> next = newNode;
-                current = current -> next;
-                list1 = list1 -> next;
-            }
-
-            else if(list2 -> val < list1 -> val){
-                ListNode * newNode = new ListNode(list2 -> val);
-                current -> next = newNode;
-                current = current -> next;
-                list2 = list2 -> next;
-            }
-
-            else{
-                ListNode * newNode = new ListNode(list1 -> val);
-                current -> next = newNode;
-                current = current -> next;
-                ListNode * neNode = new ListNode(list2 -> val);
-                current -> next = neNode;
-                current = current -> next;
-                list1 = list1 -> next;
-                list2 = list2 -> next;
-            }
-
-        }
-
-        while(list1 != NULL ){
-            ListNode * newNode = new ListNode(list1 -> val);
-            current -> next = newNode;
-            current = current -> next;
-            list1 = list1 -> next;
-        }
-
-
-        while(list2 != NULL ){
-            ListNode * newNode = new ListNode(list2 -> val);
-            current -> next = newNode;
-            current = current -> next;
-            list2 = list2 -> next;
-        }
-
-        return head -> next;
         
+        if(list1 == nullptr) return list2;
+
+        if(list2 == nullptr) return list1;
+
+        if(list1 -> val <= list2 -> val){
+            list1 -> next = mergeTwoLists(list1 -> next, list2);
+            return list1;
+        }
+        else{
+            list2 -> next = mergeTwoLists(list1, list2 -> next);
+            return list2;
+        }
+
     }
 };
