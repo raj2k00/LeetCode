@@ -14,32 +14,17 @@ public:
 
         if(head == nullptr || head -> next == nullptr) return head;
 
-        ListNode * prev = head;
-        ListNode * curr = head -> next;
+        // storing after two nodes
+        ListNode * remaining = head -> next -> next;
 
-        // changing the head to second node
-        head = curr; 
+        // second node new head;
+        ListNode * newHead = head -> next;
 
-        while(true){
-            // creating next node third pointer
-            ListNode * next = curr -> next;
+        // changing first node;
+        head -> next -> next = head;
 
-            // change the curr node next pointer to previous node
-            curr -> next = prev;
+        head -> next =  swapPairs(remaining);
 
-            // if next is null or last node
-            if(next == nullptr || next -> next == nullptr){
-                prev -> next = next;
-                break;
-            }
-
-            prev -> next = next -> next;
-
-            // update the prev and curr
-            prev = next;
-            curr = prev -> next;
-        }
-
-        return head;
+        return newHead;
     }
 };
