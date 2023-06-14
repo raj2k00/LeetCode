@@ -11,14 +11,35 @@
 class Solution {
 public:
     ListNode* swapPairs(ListNode* head) {
-        
-     ListNode * curr = head;   
 
-     while(curr != nullptr && curr -> next != nullptr){
-         swap(curr -> val, curr -> next -> val);
-         curr = curr -> next -> next;
-     }
+        if(head == nullptr || head -> next == nullptr) return head;
 
-     return head;
+        ListNode * prev = head;
+        ListNode * curr = head -> next;
+
+        // changing the head to second node
+        head = curr; 
+
+        while(true){
+            // creating next node third pointer
+            ListNode * next = curr -> next;
+
+            // change the curr node next pointer to previous node
+            curr -> next = prev;
+
+            // if next is null or last node
+            if(next == nullptr || next -> next == nullptr){
+                prev -> next = next;
+                break;
+            }
+
+            prev -> next = next -> next;
+
+            // update the prev and curr
+            prev = next;
+            curr = prev -> next;
+        }
+
+        return head;
     }
 };
