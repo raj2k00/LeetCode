@@ -10,18 +10,18 @@ class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         
-        unordered_map <ListNode* , ListNode*> hash;
+        unordered_set <ListNode* > hash;
 
         ListNode* first = headA;
         ListNode* second = headB;
 
         while(first != nullptr){
-            hash.insert(make_pair(first, first));
+            hash.insert(first);
             first = first -> next;
         }
 
         while(second != nullptr){
-            if(hash[second] != 0) return second;
+            if(hash.count(second) > 0) return second;
             second = second -> next;
         }
 
