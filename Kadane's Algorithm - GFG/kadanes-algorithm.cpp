@@ -11,12 +11,20 @@ class Solution{
     //Function to find the sum of contiguous subarray with maximum sum.
     long long maxSubarraySum(int arr[], int n){
         
-        int currentSum = 0;
-        int maxSum = arr[0];
+        long long maxSum = INT_MIN;
+        long long currSum = 0;
         
-        for(int i = 0;  i < n; i++ ){
-            currentSum = max(currentSum + arr[i] , arr[i]); 
-            maxSum = max(maxSum, currentSum);
+        for(int i = 0; i < n; i++){
+            
+            currSum += arr[i];
+        
+            
+            if(maxSum < currSum){
+                maxSum = currSum;
+            }
+            
+            if(currSum < 0) currSum = 0;
+
         }
         
         return maxSum;
