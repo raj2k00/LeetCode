@@ -14,20 +14,18 @@ class Solution{
     //Function to check if two arrays are equal or not.
     bool check(vector<ll> A, vector<ll> B, int N) {
         
+        unordered_map<long, long> hash;
         
-            unordered_map<long, long> hash;
-            
-            
-            for(auto i : A){
-                hash[i]++;
-            }
-            
-            for(auto i : B){
-                if(hash[i] == 0 ) return false;
-                hash[i]--;
-            }
-            
-            return true;
+        for(auto i : A){
+            hash[i]++;
+        }
+        
+        for(auto i : B){
+            if(hash[i] == 0 ) return false;
+            hash[i]--;
+        }
+        
+        return true;
         
     }
 };
