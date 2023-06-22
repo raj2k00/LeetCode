@@ -17,6 +17,7 @@ public:
      ListNode* next = nullptr;
 
     while (head != nullptr) {
+        
         next = head->next;
 
         if (prev->val > head->val) prev = dummy;
@@ -29,7 +30,8 @@ public:
         prev->next = head;
         head = next;
     }
-    return dummy->next;
+
+        return dummy->next;
         
     }
 };
