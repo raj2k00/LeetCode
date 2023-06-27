@@ -37,6 +37,7 @@ class Solution
     public:
     struct Node* makeUnion(struct Node* head1, struct Node* head2)
     {
+        // code here
         set <int> s;
         
         while(head1 != NULL){
@@ -49,30 +50,20 @@ class Solution
             head2 = head2 -> next;
         }
         
-        Node * head = new Node(0);
+        Node * unionNode = new Node(0);
+        Node * curr = unionNode;
         
-        Node * temp = head;
-
         for(auto i : s){
-            Node * curr = new Node(i);
-            temp -> next = curr;
-            temp = temp -> next;
+            Node * temp = new Node(i);
+            curr -> next = temp;
+            curr = curr -> next;
         }
         
-        return head -> next;
+        return unionNode -> next;
+        
         
     }
 };
-
-
-
-
-
-
-
-
-
-
 
 
 //{ Driver Code Starts.
