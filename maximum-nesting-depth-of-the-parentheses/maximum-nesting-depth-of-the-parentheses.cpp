@@ -15,7 +15,7 @@ public:
             if(s[i] == ')'){
                 depth--;
             }
-
+            
             maxCount = max(maxCount, depth);
         }
 
