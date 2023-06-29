@@ -16,7 +16,6 @@ public:
     Node * head = new Node(-1,-1);
     Node * tail = new Node(-1,-1);
 
-
     LRUCache(int capacity) {
         this -> capacity = capacity;
         head -> next = tail;
@@ -32,7 +31,6 @@ public:
         remove(node);
         add(node);
         return node -> val;
-        
     }
     
     void put(int key, int value) {
