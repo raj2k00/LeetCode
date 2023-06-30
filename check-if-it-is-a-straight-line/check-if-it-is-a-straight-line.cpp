@@ -1,25 +1,26 @@
 class Solution {
 public:
 
-    int getYDiff (vector <int> &a , vector <int> &b ){
-        return a[1] - b[1];
-    }
-
-    int getXDiff (vector <int> &a, vector <int> &b ){
-        return a[0] - b[0];
-    }
-
     bool checkStraightLine(vector<vector<int>>& coordinates) {
 
-        int deltaY = getYDiff(coordinates[1], coordinates[0]); 
-        int deltaX = getXDiff(coordinates[1], coordinates[0]); 
+        if (coordinates.size() <= 2) {
+            return true;
+        }
 
-        for(int i = 2; i < coordinates.size(); i++){
-            if (deltaY * getXDiff(coordinates[i], coordinates[0])
-                != deltaX * getYDiff(coordinates[i], coordinates[0])) {
+        int x1 = coordinates[0][0];
+        int y1 = coordinates[0][1];
+        int x2 = coordinates[1][0];
+        int y2 = coordinates[1][1];
+
+        for (int i = 2; i < coordinates.size(); i++) {
+            int x = coordinates[i][0];
+            int y = coordinates[i][1];
+
+            if ((x - x1) * (y2 - y1) != (y - y1) * (x2 - x1)) {
                 return false;
             }
         }
+
         return true;
 
     }
