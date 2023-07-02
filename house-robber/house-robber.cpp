@@ -1,24 +1,25 @@
 class Solution {
 
 private:
-    vector <int> memo;
-    int robHouse(vector<int>&nums, int i){
+    int robHouse (vector<int>& nums, int i, vector <int> & hash ){
         if(i < 0){
             return 0;
         }
 
-        if(memo[i] != -1){
-            return memo[i];
+        if(hash[i] != -1){
+            return hash[i];
         }
-        
-        memo[i] =  max(robHouse(nums, i - 2) + nums[i], robHouse(nums, i - 1));
-    
-        return memo[i];
+
+        hash[i] =  max( robHouse(nums,i - 2, hash) + nums[i] ,  robHouse(nums, i - 1, hash));
+
+        return hash[i];
     }
+
 
 public:
     int rob(vector<int>& nums) {
-        memo.resize(nums.size() + 1, -1);
-        return robHouse(nums, nums.size() - 1);
+        int n = nums.size();
+        vector <int> hash(n + 1, -1);
+        return robHouse(nums , n - 1, hash);
     }
 };
