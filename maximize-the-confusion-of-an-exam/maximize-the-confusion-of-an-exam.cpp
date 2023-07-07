@@ -5,8 +5,10 @@ public:
 
         // check for maximum T with K changes
 
-        int left = 0;
-        int maxCount = 0;
+        int Tleft = 0;
+        int Fleft = 0;
+        int maxTCount = 0;
+        int maxFCount = 0;
         int maxT = INT_MIN;
         int maxF = INT_MIN;
 
@@ -14,37 +16,29 @@ public:
         for(int right = 0; right < answerKey.size(); right++){
 
             if(answerKey[right] == 'F'){
-                maxCount++;
+                maxFCount++;
             }
-
-            while(maxCount > k){
-                if(answerKey[left] == 'F'){
-                    maxCount--;
-                }
-                left++;
-            }
-
-            maxT = max(maxT, right - left + 1);
-
-        }
-
-        left = 0;
-        maxCount = 0;
-
-        for(int right = 0; right < answerKey.size(); right++){
 
             if(answerKey[right] == 'T'){
-                maxCount++;
+                maxTCount++;
             }
 
-            while(maxCount > k){
-                if(answerKey[left] == 'T'){
-                    maxCount--;
+            while(maxFCount > k){
+                if(answerKey[Fleft] == 'F'){
+                    maxFCount--;
                 }
-                left++;
+                Fleft++;
             }
 
-            maxF = max(maxF, right - left + 1);
+            while(maxTCount > k){
+                if(answerKey[Tleft] == 'T'){
+                    maxTCount--;
+                }
+                Tleft++;
+            }
+
+            maxF = max(maxF, right - Fleft + 1);
+            maxT = max(maxT, right - Tleft + 1);
 
         }
 
