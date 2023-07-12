@@ -2,48 +2,31 @@ class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
 
-        int n = graph.size();
-        vector <int> indegree(n);
-        vector <vector<int>> adj(n);
+    int N = graph.size();
+    vector<vector<int>> R(N);
+    vector<int> outdegree(N), safe(N), ans;
 
-        for(int i = 0; i < n; i++ ){
-            for(auto node : graph[i]){
-                adj[node].push_back(i);
-                indegree[i]++;
-            }
+    queue<int> q;
+    for (int i = 0; i < N; ++i) {
+        for (int v : graph[i]) {
+            R[v].push_back(i);
         }
-
-        queue <int> q;
-
-        for(int i = 0; i < n; i++){
-            if(indegree[i] == 0){
-                q.push(i);
-            }
+        outdegree[i] = graph[i].size();
+        if (outdegree[i] == 0) q.push(i);
+    }
+    
+    while (q.size()) {
+        int u = q.front();
+        q.pop();
+        safe[u] = 1;
+        for (int v : R[u]) {
+            if (--outdegree[v] == 0) q.push(v);
         }
-
-        vector <bool> safe(n);
-
-        while(!q.empty()){
-            int node = q.front();
-            q.pop();
-            safe[node] = true;
-
-            for(auto& neighbor : adj[node]){
-                indegree[neighbor]--;
-                if(indegree[neighbor] == 0){
-                    q.push(neighbor);
-                }
-            }
-        }
-        
-       vector<int> safeNodes;
-
-        for(int i = 0; i < n; i++) {
-            if(safe[i]) {
-                safeNodes.push_back(i);
-            }
-        }
-        return safeNodes;
+    }
+    for (int i = 0; i < N; ++i) {
+        if (safe[i]) ans.push_back(i);
+    }
+    return ans;
 
     }
 };
