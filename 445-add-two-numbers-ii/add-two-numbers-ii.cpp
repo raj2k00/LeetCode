@@ -12,123 +12,41 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
         
-        //Reversing the list:
+        stack <int> s1, s2;
 
-        ListNode* next = nullptr;
-        ListNode* prev = nullptr;
-        ListNode* curr = l1;
-        ListNode* head = l1;
-        ListNode * reversel1 = nullptr;
-        ListNode * reversel2 = nullptr;
-
-        while(curr != nullptr){
-            next = curr -> next;
-            curr -> next = prev;
-            prev= curr;
-            curr =  next;
+        while(l1 != nullptr){
+            s1.push(l1 -> val);
+            l1 = l1 -> next;
         }
 
-        reversel1 = prev;
-
-        next = nullptr;
-        prev = nullptr;
-        curr = l2;
-        head = l2;
-
-        while(curr != nullptr){
-            next = curr -> next;
-            curr -> next = prev;
-            prev= curr;
-            curr =  next;
+        while(l2 != nullptr){
+            s2.push(l2 -> val);
+            l2 = l2 -> next;
         }
 
-        reversel2 = prev;
+        int totalSum = 0, carry = 0;
+        ListNode * ans = new ListNode();
 
-        ListNode * ans = new ListNode(0);
-        ListNode * ansHead = ans;
-
-        bool carry = false;
-
-        while(reversel1 != NULL && reversel2 != NULL){
-
-           int currSum = reversel1 -> val + reversel2 -> val;
-
-           if(carry){
-               currSum = currSum + 1;
-               carry = false;
-           }
-  
-           if(currSum > 9){
-               carry = true;
-               currSum = currSum % 10;
-           }
-
-           ListNode * temp = new ListNode(currSum);
-           ans -> next = temp;
-           reversel1 = reversel1 -> next;
-           reversel2 = reversel2 -> next;
-           ans = ans -> next;
-
-        }
-
-        while(reversel1 != nullptr ){
-            int currSum = reversel1 -> val;
-
-            if(carry){
-               currSum = currSum + 1;
-               carry = false;
+        while(!s1.empty() || !s2.empty()){
+            if(!s1.empty()){
+                totalSum += s1.top();
+                s1.pop();
+            }
+            if(!s2.empty()){
+                totalSum += s2.top();
+                s2.pop();
             }
 
-            if(currSum > 9){
-               carry = true;
-               currSum = currSum % 10;
-            }
+            ans -> val = totalSum % 10;
+            carry = totalSum / 10;
 
-           ListNode * temp = new ListNode(currSum);
-           ans -> next = temp;
-           reversel1 = reversel1 -> next;
-           ans = ans -> next;
+            ListNode * newNode = new ListNode(carry);
+            newNode -> next = ans;
+            ans = newNode;
+            totalSum = carry;
+
         }
 
-        while(reversel2 != nullptr ){
-            int currSum = reversel2 -> val;
-
-            if(carry){
-               currSum = currSum + 1;
-               carry = false;
-            }
-
-            if(currSum > 9){
-               carry = true;
-               currSum = currSum % 10;
-            }
-
-           ListNode * temp = new ListNode(currSum);
-           ans -> next = temp;
-           reversel2 = reversel2 -> next;
-           ans = ans -> next;
-        }
-
-        if(carry){
-           ListNode * temp = new ListNode(1);
-           ans -> next = temp;
-           ans = ans -> next;
-        }
-
-
-        next = nullptr;
-        prev = nullptr;
-        curr = ansHead -> next;
-        head = ansHead -> next;
-
-        while(curr != nullptr){
-            next = curr -> next;
-            curr -> next = prev;
-            prev= curr;
-            curr =  next;
-        }
-
-        return prev;
-
+        return carry == 0 ? ans -> next : ans;
     }
 };
