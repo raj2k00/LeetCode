@@ -34,53 +34,61 @@ class Solution
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
     Node* segregate(Node *head) {
-
-        // Dummy nodes for storing 0s, 1s and 2s.
-        Node * zeroD = new Node(0);
-        Node * oneD  = new Node(0);
-        Node * twoD  = new Node(0);
         
-        // Assigning Head pointers
-        Node * zero = zeroD;
-        Node * one = oneD;
-        Node * two = twoD;
+        // nodes;
+        
+        Node * Zero = new Node(0);
+        Node * One = new Node(0);
+        Node * Two = new Node(0);
+        
+        Node * zero = Zero;
+        Node * one = One;
+        Node * two = Two;
         
         Node * curr = head;
         
         while(curr != NULL){
-            
             if(curr -> data == 0){
-                zero -> next = curr;
+                Node * temp = new Node(0);
+                zero -> next = temp;
                 zero = zero -> next;
-                curr = curr -> next;
             }
-            
-            else if (curr -> data == 1){
-                one -> next = curr;
-                one = one -> next;
-                curr = curr -> next;
-            }
-            
-            else{
-                two -> next = curr;
-                two = two -> next;
-                curr = curr -> next;
-            }
-            
+            curr = curr -> next;
         }
         
-        // combining all the nodes;
-        zero -> next = (oneD -> next) ? oneD -> next : twoD -> next;
-        one -> next = twoD -> next;
-        two -> next = NULL;
+        Node * oneCurr = head;
         
-        curr = zeroD -> next;
+        while(oneCurr != NULL){
+            if(oneCurr -> data == 1){
+                Node * temp = new Node(1);
+                one  -> next = temp;
+                one = one -> next;
+            }
+            
+            oneCurr = oneCurr -> next;
+        }
         
-        delete(zeroD);
-        delete(oneD);
-        delete(twoD);
+        Node * twoCurr = head;
         
-        return curr;
+        while(twoCurr != NULL){
+            if(twoCurr -> data == 2){
+                Node * temp = new Node(2);
+                two  -> next = temp;
+                two = two -> next;
+            }
+            
+            twoCurr = twoCurr -> next;
+        }
+        
+        // merge Nodes;
+        
+        zero -> next = One -> next != NULL ? One -> next : Two -> next;
+        
+        one -> next = Two -> next; 
+        
+        return Zero -> next;
+        
+        
         
     }
 };
