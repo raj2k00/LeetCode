@@ -5,21 +5,10 @@ public:
         deque <int> q;
         vector <int> ans;
 
-        for(int i = 0; i < k ; i++){
 
-            while(!q.empty() && nums[q.back()] <= nums[i]){
-                q.pop_back();
-            }        
-
-            q.push_back(i);
-        }
-
-        ans.push_back(nums[q.front()]);
-
-        for(int i = k; i < nums.size(); i++){
+        for(int i = 0; i < nums.size(); i++){
 
             if(q.front() == i - k){
-                cout << "pop" << endl;
                 q.pop_front();
             }
 
@@ -29,7 +18,7 @@ public:
 
             q.push_back(i);
 
-            ans.push_back(nums[q.front()]);
+            if(i >= k - 1) ans.push_back(nums[q.front()]);
         }
 
         return ans;
