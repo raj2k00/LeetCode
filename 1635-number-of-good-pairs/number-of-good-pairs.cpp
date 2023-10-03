@@ -5,14 +5,8 @@ public:
         int ans = 0;
 
         for(int i : nums){
+            ans += hash[i];
             hash[i]++;
-        }
-
-        for(auto i : hash){
-            if(i.second > 1){
-                int n = i.second;
-                ans += (n * (n -1)) / 2;
-            }
         }
 
         return ans;
