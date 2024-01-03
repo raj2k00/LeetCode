@@ -1,41 +1,23 @@
 class Solution {
 public:
     int numberOfBeams(vector<string>& bank) {
+        int prev = 0 , ans = 0;
 
-        unordered_map <int, int> mp;
-        int ans = 0;
-        int n = bank.size();
+        for(string s: bank){
+            int count = 0;
 
-        for(int i = 0; i < n; i++){
-            for(char c : bank[i]){
+            for(char c : s){
                 if(c == '1'){
-                    mp[i]++;
+                    count++;
                 }
             }
-        }
 
-        int i = 0;
-        int j = 1;
-
-        while(i < j && i < n - 1 && j < n){
-            if(mp[i] && mp[j]){
-                ans += mp[i] * mp[j];
-                i = j;
-                j++;
-            }else if(mp[j] == 0){
-                j++;
-            }else if(mp[i] == 0){
-                i++;
-                j++;
-            }else if(mp[i] && mp[j] == 0){
-                j++;
-            }else{
-                i++;
-                j++;
+            if(count != 0){
+                ans += (prev * count);
+                prev = count;
             }
         }
-        return ans;
 
-        
+        return ans;
     }
 };
