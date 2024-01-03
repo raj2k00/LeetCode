@@ -16,8 +16,6 @@ public:
 
         int i = 0;
         int j = 1;
-        bool hasMultiplied = false;
-        bool hasSecurity = false;
 
         while(i < j && i < n - 1 && j < n){
             if(mp[i] && mp[j]){
@@ -31,7 +29,7 @@ public:
                 j++;
             }else if(mp[i] && mp[j] == 0){
                 j++;
-            }else if(mp[j] && mp[i] == 0){
+            }else{
                 i++;
                 j++;
             }
