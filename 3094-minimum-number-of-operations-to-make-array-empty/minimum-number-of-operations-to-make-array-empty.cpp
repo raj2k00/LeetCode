@@ -15,17 +15,7 @@ public:
             
             if(curr == 1) return -1;
 
-            else if( curr % 3 == 0){
-                ans += curr / 3;
-            }
-
-            else if( curr % 3 == 1){
-                ans += curr / 3 + 1;
-            }
-
-            else if( curr % 3 == 2){
-                ans += curr / 3 + 1;
-            }
+            ans += ceil((double)curr / 3);
         }
 
         return ans;
