@@ -4,24 +4,23 @@
  */
 var majorityElement = function (nums) {
 
-    // use object to store the map values
-    let hash = {};
+    let count = 0;
+    let ans = 0;
 
-    // variable for answer declartion
-    let ans;
-
-    // loop through the input array and store them in object with its count
-    for (const num of nums) {
-        hash[num] = ++hash[num] || 1;
-    }
-
-    // compare the count to find majority element
-    for (const [num, count] of Object.entries(hash)) {
-        if (count > nums.length / 2) {
+    for(const num of nums){
+        if(count == 0){
             ans = num;
+            count++;
+        }
+
+        else if(ans == num){
+            count++;
+        }
+
+        else{
+            count--;
         }
     }
 
-    // return ans 
     return ans;
 };
