@@ -1,8 +1,4 @@
-function createCounter(n: number): () => number {
-    let count = n;
-    return ():number => count++; 
-}
-
+const createCounter = (n: number): () => number => () => n++; 
 
 /** 
  * const counter = createCounter(10)
