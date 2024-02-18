@@ -1,26 +1,25 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        
-        // for storing the num with its count
-        unordered_map <int , int> mp;
 
-        // storing the map values
-        for(auto i : nums){
-            mp[i]++;
-        }
+        int count = 0;
+        int element = 0;
 
-        // local greatest value for count
-        int greatest = -1;
-        int ans = -1;
+        for(int i = 0; i < nums.size(); i++){
+            if(count == 0){
+                element = nums[i];
+                count = 1;
+            }
 
-        for(auto i : mp){
-            if(i.second > nums.size() / 2 && i.second > greatest){
-                greatest = i.second;
-                ans = i.first; 
+            else if(element == nums[i]){
+                count++;
+            }
+
+            else {
+                count--;
             }
         }
-
-        return ans;
+        
+        return element;
     }
 };
